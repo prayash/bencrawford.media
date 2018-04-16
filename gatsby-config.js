@@ -63,18 +63,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: 'Ben Crawford',
-        short_name: 'Ben Crawford',
-        start_url: '/',
-        background_color: '#F5F5F5',
-        theme_color: '#005CDD',
-        display: 'minimal-ui',
-        icons: 'src/assets/favicon/apple-touch-icon.png'
-      }
-    },
-    {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         // output: `/some-other-sitemap.xml`,
