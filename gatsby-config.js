@@ -71,22 +71,7 @@ module.exports = {
         background_color: '#F5F5F5',
         theme_color: '#005CDD',
         display: 'minimal-ui',
-        icons: [
-          {
-            // Everything in /static will be copied to an equivalent
-            // directory in /public during development and build, so
-            // assuming your favicons are in /static/favicons,
-            // you can reference them here
-            src: `/assets/favicons/android-chrome-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`
-          },
-          {
-            src: `/assets/favicons/android-chrome-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`
-          }
-        ]
+        icons: 'src/assets/favicon/apple-touch-icon.png'
       }
     },
     {
