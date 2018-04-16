@@ -1,0 +1,84 @@
+.blog {
+  .cover .gatsby-image-wrapper,
+  .article .cover {
+    width: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    animation: 400ms ease-in 0s 1 fadeIn;
+  }
+
+  .article .date {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin-left: 0.5rem;
+  }
+
+  .article .container {
+    animation: 1s ease-out 0s 1 slideUpFade;
+  }
+
+  .article .content {
+    margin-top: -10rem;
+    position: relative;
+    z-index: 100;
+  }
+
+  .article .content,
+  .article .meta {
+    width: 80%;
+    float: right;
+    padding: 2rem;
+  }
+
+  .article .meta {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .article .author {
+    min-width: 50%;
+    float: left;
+  }
+
+  .article .meta figure h5 {
+    padding-top: 0.35rem;
+  }
+
+  .article .meta figure img {
+    width: 32px;
+    float: left;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+  }
+
+  .article .TagCloud ul {
+    margin: 0;
+  }
+
+  .article .TagCloud li {
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 800px) {
+    .article .content,
+    .article .meta {
+      width: 100%;
+    }
+
+    .article .content {
+      margin-top: -4rem;
+    }
+  }
+}
+
+.gatsby-highlight {
+  margin-bottom: 2rem;
+}
+
+.container.title {
+  margin-top: 5rem;
+}

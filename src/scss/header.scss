@@ -1,0 +1,54 @@
+.header {
+  align-items: center;
+  animation: 1s ease-out 0s 1 slideDownCover;
+  display: flex;
+  flex-direction: row;
+  height: 3.5rem;
+  justify-content: center;
+  padding: 0.75rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.header .logo {
+  color: black;
+  font-weight: 900;
+}
+
+.header .logo,
+.header .navigation {
+  width: auto;
+  height: 30px;
+}
+
+.header .navigation {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  float: right;
+}
+
+.header .navigation ul {
+  list-style-type: none;
+}
+
+.header .navigation li {
+  display: inline;
+  text-transform: uppercase;
+  margin: 0 1rem;
+  font-weight: 800;
+}
+
+.header .navigation a {
+  color: #fafafa;
+  border-bottom: 0;
+  transition: color 400ms ease-in;
+}
+
+.header .navigation a:hover,
+a .title:hover,
+a.title:hover {
+  color: #005cdd;
+  transition: color 400ms ease-out;
+}

@@ -1,0 +1,202 @@
+@import 'atoms';
+@import 'animations';
+@import 'base';
+@import 'layout';
+@import 'buttons';
+@import 'header';
+@import 'footer';
+@import 'listing';
+@import 'blog';
+
+@font-face {
+  font-family: Pro;
+  src: url(../assets/fonts/31FF25_0_0.woff2) format('woff2');
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+#___gatsby,
+main,
+#page {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start; /* align items in Main Axis */
+  align-items: stretch; /* align items in Cross Axis */
+  align-content: stretch; /* Extra space in Cross Axis */
+
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.container {
+  flex: 1;
+}
+
+.index {
+  display: block;
+}
+
+.home {
+  animation: 1s ease-out 0s 1 fadeIn;
+}
+
+.panels {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
+  background-size: cover;
+  background-position: right;
+  background-image: url('../assets/img/inversion-flatiron.jpg');
+
+  section {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    height: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 140px;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    width: 33.33%;
+    z-index: 1;
+
+    a {
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      font-family: Pro, Roboto, Helvetica, sans-serif;
+      font-size: 3.5em;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-align: center;
+      margin-bottom: 0;
+      z-index: 2;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+      user-select: none;
+      width: 100%;
+    }
+
+    &.darken {
+      background-color: rgb(0, 0, 0) !important;
+
+      a {
+        color: rgb(44, 44, 44);
+      }
+    }
+
+    &.expanded {
+      color: white;
+    }
+
+    &.grayen {
+      background: rgb(44, 44, 44) !important;
+
+      a {
+        color: black;
+      }
+    }
+
+    &.motion {
+      left: 0;
+      width: 33.33%;
+    }
+
+    &.about {
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      left: 33.33%;
+      z-index: 2;
+
+      &.expanded {
+        background: white;
+
+        a {
+          color: black;
+        }
+      }
+    }
+
+    &.stills {
+      left: 66.66%;
+    }
+  }
+}
+
+/* -------------- Shared Classes ---------------- */
+
+.card,
+.article .content {
+  background: #ffffff;
+  box-shadow: 6px 2px 44px 10px rgba(0, 0, 0, 0.062);
+  overflow: hidden;
+  transition: box-shadow 2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 3px 0px 22px 5px rgba(0, 0, 0, 0.12);
+  opacity: 1;
+}
+
+/* Black border on right side headers */
+.title {
+  color: #051923;
+  padding-left: 1rem;
+  border-left: 3px solid #051923;
+}
+
+a .title:hover,
+a.title:hover,
+.title.blue {
+  border-color: #005cdd;
+}
+
+.title__sub {
+  text-transform: uppercase;
+  color: #909090;
+}
+
+.Link {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #051923;
+  border-bottom: 0;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.Link .icon {
+  width: 13px;
+  height: 13px;
+  margin-bottom: -0.05rem;
+  margin-left: 0.25rem;
+}
+
+.Link:hover .icon #arrowRightFill {
+  fill: #005cdd;
+}

@@ -1,0 +1,49 @@
+.card {
+  position: relative;
+  transition: transform 400ms, box-shadow 500ms;
+  animation: 1s ease-out 0s 1 slideUpFade;
+}
+
+.card:hover {
+  transform: translateY(-0.5rem);
+}
+
+.card .gatsby-image-wrapper,
+.card figure {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.card .content {
+  padding: 1rem;
+}
+
+.card .excerpt {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.card .date {
+  font-size: 0.6rem;
+  color: #a0a0a0;
+  float: right;
+}
+
+.card .meta {
+  width: 90%;
+  position: absolute;
+  bottom: 1rem;
+}
+
+@media (min-width: 400px) {
+  .card.small {
+    min-width: 320px;
+    max-width: 100%;
+    width: 100%;
+    margin: 30px;
+  }
+}
