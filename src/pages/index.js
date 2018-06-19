@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import cx from 'classnames'
+import Slider from 'react-slick'
+
 import config from '../config'
 import '../scss/index.scss'
 
@@ -43,6 +45,17 @@ export default class Index extends React.Component {
 
   render() {
     let { expanded, panels } = this.state
+    let settings = {
+      arrows: false,
+      autoplay: true,
+      dots: false,
+      fade: true,
+      lazyLoad: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
 
     return (
       <div className="home container">
@@ -76,7 +89,12 @@ export default class Index extends React.Component {
                   {p.title}
                 </Link>
 
-                <div className="slides" />
+                {p.title === 'stills' && (
+                  <Slider {...settings}>
+                    <img src={require('../assets/img/slides/eclipse.jpg')} />
+                    <img src={require('../assets/img/slides/rocks.jpg')} />
+                  </Slider>
+                )}
               </section>
             )
           })}

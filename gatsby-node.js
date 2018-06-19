@@ -218,7 +218,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     })
 
     createBlogPagination(graphql, createPage, resolve, reject)
-    createStillsPagination(graphql, createPage, resolve, reject)
     createMotionPagination(graphql, createPage, resolve, reject)
   })
 }

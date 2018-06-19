@@ -10,7 +10,7 @@ import appleTouchIcon from '../assets/favicon/apple-touch-icon.png'
 import favicon32 from '../assets/favicon/favicon-32x32.png'
 import favicon16 from '../assets/favicon/favicon-16x16.png'
 
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <main>
     <Helmet>
       <title>{config.title}</title>
@@ -21,10 +21,16 @@ const Layout = ({ children }) => (
       <link rel="icon" type="image/png" sizes="16x16" href={favicon16} />
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato"
+        rel="stylesheet"
+      />
     </Helmet>
-    <Header />
 
-    <div id="page">{children()}</div>
+    <div id="page">
+      <Header route={location.pathname} />
+      {children()}
+    </div>
   </main>
 )
 

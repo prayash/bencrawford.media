@@ -1,0 +1,28 @@
+.about.container {
+  animation: 1s ease-out 0s 1 fadeIn;
+  display: flex;
+  flex-direction: column;
+  font-family: Lato, sans-serif;
+  justify-content: flex-start;
+  padding: 100px 2em;
+
+  .title-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+    position: relative;
+
+    .title-text {
+      font-family: Pro;
+      font-size: 3em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .image {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 2em;
+    }
+  }
+}

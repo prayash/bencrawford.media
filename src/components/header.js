@@ -6,7 +6,7 @@ class Header extends React.Component {
     return (
       <header className="header">
         <Link to={'/'} className="logo">
-          b c
+          ben crawford media
         </Link>
 
         <nav className="navigation hidden">
