@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Logo from '../assets/img/logo.png'
 
 class Header extends React.Component {
   render() {
     return (
       <header className="header">
         <Link to={'/'} className="logo">
-          ben crawford media
+          <img src={Logo} width={48} />
         </Link>
 
         <nav className="navigation hidden">

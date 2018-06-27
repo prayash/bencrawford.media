@@ -13,10 +13,12 @@ class Stills extends React.Component {
   }
 
   componentDidMount() {
-    this.loadPhotos()
+    if (window) {
+      this.loadPhotos()
+    }
   }
 
-  async loadPhotos() {
+  loadPhotos() {
     const urls = [
       require('../assets/img/landscape/big-sandy.jpg'),
       require('../assets/img/landscape/canyon.jpg'),
@@ -30,17 +32,17 @@ class Stills extends React.Component {
       require('../assets/img/landscape/sunset.png')
     ]
 
-    const items = await load.all(urls)
-
-    this.setState({
-      photos: items.map(item => {
-        return {
-          src: item.src,
-          width: item.width,
-          height: item.height
-        }
+    load.all(urls).then(items =>
+      this.setState({
+        photos: items.map(item => {
+          return {
+            src: item.src,
+            width: item.width,
+            height: item.height
+          }
+        })
       })
-    })
+    )
   }
 
   activateFilter = filter => {
