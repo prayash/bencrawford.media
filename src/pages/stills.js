@@ -1,15 +1,15 @@
 import React from 'react'
-import { withPrefix } from 'gatsby-link'
+
 import Gallery from 'react-photo-gallery'
 import Measure from 'react-measure'
-import load from 'load-asset'
+import Image from 'gatsby-image'
 
 const FILTERS = ['all', 'adventure', 'landscape', 'lifestyle']
 
-class Stills extends React.Component {
+export default class Stills extends React.Component {
   state = {
     photos: [],
-    width: -1
+    width: 1
   }
 
   componentDidMount() {
@@ -19,61 +19,61 @@ class Stills extends React.Component {
   }
 
   loadPhotos() {
-    const urls = [
-      require('../assets/img/landscape/big-sandy.jpg'),
-      require('../assets/img/landscape/canyon.jpg'),
-      require('../assets/img/landscape/cascade.jpg'),
-      require('../assets/img/landscape/eclipse.jpg'),
-      require('../assets/img/landscape/flagpole.jpg'),
-      require('../assets/img/landscape/flower.jpg'),
-      require('../assets/img/landscape/garden.jpg'),
-      require('../assets/img/landscape/olympos-beach.jpg'),
-      require('../assets/img/landscape/rocks.jpg'),
-      require('../assets/img/landscape/sunset.png')
-    ]
+    let { edges } = this.props.data.allFile
 
-    load.all(urls).then(items =>
-      this.setState({
-        photos: items.map(item => {
+    // @HACK: Not sure why some nodes are coming in null
+    let allImages = edges.filter(e => e.node.childImageSharp !== null)
+
+    this.setState({
+      photos: allImages.map(edge => {
+        let { node } = edge
+
+        if (node.childImageSharp) {
+          let { sizes } = node.childImageSharp
+          let { src } = sizes
+
           return {
-            src: item.src,
-            width: item.width,
-            height: item.height
+            src,
+            sizes: [`${sizes.sizes}`],
+            width: 600,
+            height: 600 / sizes.aspectRatio
           }
-        })
+        }
       })
-    )
+    })
   }
 
   activateFilter = filter => {
     console.log(filter)
   }
 
+  renderFilters = () => {
+    return (
+      <section className="stills__filter">
+        <ul className="filter__list">
+          <p>filter:</p>
+
+          {FILTERS.map((filter, i) => (
+            <li key={i}>
+              <button
+                className="filter__link"
+                onClick={this.activateFilter.bind(this, filter)}
+              >
+                {filter}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
   render() {
     let { width, photos, loadedAll } = this.state
-    let isLoading = photos.length === 0
-
-    if (isLoading) {
-      return <div>Loading...</div>
-    }
 
     return (
       <div className="stills container">
-        <section className="stills__filter">
-          <ul className="filter__list">
-            <p>filter:</p>
-            {FILTERS.map((filter, i) => (
-              <li key={i}>
-                <button
-                  className="filter__link"
-                  onClick={this.activateFilter.bind(this, filter)}
-                >
-                  {filter}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {this.renderFilters()}
 
         <Measure
           bounds
@@ -84,16 +84,7 @@ class Stills extends React.Component {
           }
         >
           {({ measureRef }) => {
-            let columns = 1
-            if (width >= 480) {
-              columns = 2
-            }
-            if (width >= 1024) {
-              columns = 3
-            }
-            if (width >= 1824) {
-              columns = 3
-            }
+            let columns = this.calculateColumns(width) || 1
 
             return (
               <div ref={measureRef} className="gallery-container">
@@ -109,6 +100,32 @@ class Stills extends React.Component {
       </div>
     )
   }
+
+  calculateColumns(width) {
+    if (width >= 480) {
+      return 2
+    }
+
+    if (width >= 1024) {
+      return 3
+    }
+
+    return 0
+  }
 }
 
-export default Stills
+export const pageQuery = graphql`
+  query ImagesQuery {
+    allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+      edges {
+        node {
+          childImageSharp {
+            sizes(maxWidth: 600, quality: 95) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
+      }
+    }
+  }
+`

@@ -12,9 +12,13 @@ export default () => {
           <img className="image" src={image} />
 
           <div>
-            <h2 className="title-text">Ben Crawford</h2>
             <p className="about__content">
-              Ben Crawford is a photographer, filmmaker, and outdoor enthusiast.
+              Ben is a filmmaker, photographer, and adventurer that is deeply
+              rooted in the west. His passions lay within big days in the
+              mountains, getting lost in the desert, and telling the stories of
+              these incredibly important spaces and the people that interact
+              with them. Ben strives to further explore artistic expression, the
+              natural world, and where these entities intersect.
             </p>
           </div>
         </div>

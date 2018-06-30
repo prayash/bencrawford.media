@@ -29,6 +29,7 @@ const Layout = ({ children, location }) => (
 
     <div id="page">
       <Header route={location.pathname} />
+
       {children()}
     </div>
   </main>

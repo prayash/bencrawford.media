@@ -68,9 +68,6 @@ main,
   height: 100vh;
   display: flex;
   flex-flow: row wrap;
-  background-size: cover;
-  background-position: right;
-  background-image: url('../assets/img/landscape/inversion-flatiron.jpg');
 
   section {
     position: absolute;
@@ -238,4 +235,8 @@ a.title:hover,
     height: 100%;
     width: auto;
   }
+}
+
+.gallery-container {
+  width: 100%;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import cx from 'classnames'
 import Slider from 'react-slick'
+import Img from 'gatsby-image'
 
 import config from '../config'
 import '../scss/index.scss'
@@ -57,8 +58,16 @@ export default class Index extends React.Component {
       slidesToScroll: 1
     }
 
+    let { background } = this.props.data
+
     return (
       <div className="home container">
+        <Img
+          style={{ position: 'absolute', height: '100%', width: '100%' }}
+          sizes={background.sizes}
+          resolutions={background.resolutions}
+        />
+
         <div className="panels">
           {panels.map((p, index) => {
             let isExpanded = index === expanded
@@ -162,32 +171,9 @@ export const query = graphql`
         }
       }
     }
-    projects: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
-      filter: { frontmatter: { section: { eq: "project" } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-            cover_image {
-              publicURL
-              childImageSharp {
-                sizes(maxWidth: 1240) {
-                  srcSet
-                }
-              }
-            }
-            section
-          }
-          fields {
-            slug
-          }
-        }
+    background: imageSharp(id: { regex: "/bg.jpg/" }) {
+      sizes(maxWidth: 1280) {
+        ...GatsbyImageSharpSizes
       }
     }
   }
