@@ -1,10 +1,10 @@
 ---
-title: Jazz Piano
+title: Lander Brewing Co
 date: "2018-01-21"
 section: motion
-cover_image: "./jazz-piano.jpg"
+cover_image: "./lander-brewing-co.jpg"
 tags: [ 'music video', 'nature', 'cinematography' ]
-order: 1
+order: 2
 ---
 
 Sam just being himself.

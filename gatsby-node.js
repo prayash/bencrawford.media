@@ -66,52 +66,6 @@ function createBlogPagination(graphql, createPage, resolve, reject) {
 }
 
 /**
- *  Pagination for /stills
- */
-function createStillsPagination(graphql, createPage, resolve, reject) {
-  graphql(`
-    {
-      allMarkdownRemark(
-        filter: { frontmatter: { section: { eq: "stills" } } }
-      ) {
-        totalCount
-        edges {
-          node {
-            id
-            frontmatter {
-              title
-              date(formatString: "DD MMMM, YYYY")
-              cover_image {
-                publicURL
-                childImageSharp {
-                  sizes(maxWidth: 1240) {
-                    srcSet
-                  }
-                }
-              }
-              section
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `).then(result => {
-    createPaginatedPages({
-      edges: result.data.allMarkdownRemark.edges,
-      createPage: createPage,
-      pageTemplate: 'src/templates/stills.js',
-      pageLength: 6,
-      pathPrefix: 'stills',
-      buildPath: (index, pathPrefix) =>
-        index > 1 ? `${pathPrefix}/${index}` : `/${pathPrefix}` // This is optional and this is the default
-    })
-  })
-}
-
-/**
  *  Pagination for /motion
  */
 function createMotionPagination(graphql, createPage, resolve, reject) {
@@ -135,7 +89,8 @@ function createMotionPagination(graphql, createPage, resolve, reject) {
                   }
                 }
               }
-              section
+              tags
+              order
             }
             fields {
               slug

@@ -4,45 +4,41 @@ import Img from 'gatsby-image'
 
 import arrowRight from '../assets/img/icon-arrow-right.svg'
 
-export default props => {
-  const links = {
-    blog: 'Read post',
-    stills: 'View collection'
-  }
+const byOrder = (prev, next) =>
+  prev.node.frontmatter.order - next.node.frontmatter.order
 
-  let listing = props.loop
-    .filter(({ node }) => {
-      if (props.skip === true) {
-        return props.loop[0].node !== node
-      } else {
-        return node
-      }
-    })
-    .map(({ node }, index) => (
-      <section className="col" key={index}>
-        <article className="card small" key={node.id}>
-          <figure>
+export default class Listing extends React.Component {
+  render() {
+    let { data } = this.props
+
+    console.log(data)
+
+    let listing = data
+      .sort(byOrder)
+      .filter(({ node }) => {
+        if (this.props.skip === true) {
+          return data[0].node !== node
+        } else {
+          return node
+        }
+      })
+      .map(({ node }, index) => (
+        <section className="listing" key={index}>
+          <article className="card" key={node.id}>
             <Img sizes={node.frontmatter.cover_image.childImageSharp.sizes} />
-          </figure>
-          <div className="content">
-            <Link to={node.fields.slug}>
-              <h3 className="title">{node.frontmatter.title}</h3>
-            </Link>
-            <p className="excerpt">{node.excerpt}</p>
 
-            <aside className="meta">
-              <Link to={node.fields.slug} className="Link">
-                {node.frontmatter.section
-                  ? links[node.frontmatter.section]
-                  : 'See post'}
-                <img src={arrowRight} className="icon arrow right" />
+            <div className="content">
+              <Link className="link" to={node.fields.slug}>
+                <p className="tags">Music Video / Cinematography</p>
+                <h3 className="title">{node.frontmatter.title}</h3>
               </Link>
-              <span className="date">{node.frontmatter.date}</span>
-            </aside>
-          </div>
-        </article>
-      </section>
-    ))
 
-  return <section className="container row">{listing}</section>
+              <p className="excerpt">{node.excerpt}</p>
+            </div>
+          </article>
+        </section>
+      ))
+
+    return <div className="listings container col">{listing}</div>
+  }
 }

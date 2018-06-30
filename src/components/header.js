@@ -4,16 +4,10 @@ import Logo from '../assets/img/logo.png'
 
 class Header extends React.Component {
   render() {
-    let isHome = this.props.route === '/'
-
     return (
       <header className="header">
         <Link to={'/'} className="logo">
-          {isHome ? (
-            <img src={Logo} width={48} />
-          ) : (
-            <h1 className="title-text">Ben Crawford</h1>
-          )}
+          <img src={Logo} width={48} />
         </Link>
 
         <nav className="navigation hidden">

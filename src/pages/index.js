@@ -4,6 +4,7 @@ import cx from 'classnames'
 import Slider from 'react-slick'
 import Img from 'gatsby-image'
 
+import Header from '../components/header'
 import config from '../config'
 import '../scss/index.scss'
 
@@ -62,6 +63,8 @@ export default class Index extends React.Component {
 
     return (
       <div className="home container">
+        <Header />
+
         <Img
           style={{ position: 'absolute', height: '100%', width: '100%' }}
           sizes={background.sizes}
@@ -172,7 +175,7 @@ export const query = graphql`
       }
     }
     background: imageSharp(id: { regex: "/bg.jpg/" }) {
-      sizes(maxWidth: 1280) {
+      sizes(maxWidth: 1280, quality: 100) {
         ...GatsbyImageSharpSizes
       }
     }

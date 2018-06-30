@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import config from '../config'
 
-import Header from '../components/header'
 import Footer from '../components/footer'
 
 import appleTouchIcon from '../assets/favicon/apple-touch-icon.png'
@@ -27,11 +26,7 @@ const Layout = ({ children, location }) => (
       />
     </Helmet>
 
-    <div id="page">
-      <Header route={location.pathname} />
-
-      {children()}
-    </div>
+    <div id="page">{children()}</div>
   </main>
 )
 

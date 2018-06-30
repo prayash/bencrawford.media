@@ -9,12 +9,14 @@ const Motion = ({ data, pathContext }) => {
   const nextUrl = (index + 1).toString()
 
   return (
-    <div className="gallery motion">
-      <header className="container title">
-        {/* <h1>{capitalizeFirstLetter(pathPrefix)} archive</h1> */}
+    <div className="gallery--motion">
+      <header className="header">
+        <Link to={'/'}>
+          <h1 className="heading">Ben Crawford Media / Motion</h1>
+        </Link>
       </header>
 
-      <Listing loop={group} />
+      <Listing data={group} />
     </div>
   )
 }

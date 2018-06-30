@@ -6,16 +6,25 @@
   justify-content: flex-start;
   padding: 100px 2em;
 
-  .title-wrapper {
-    display: flex;
-    flex-direction: row;
+  .about__title {
     height: 500px;
-    position: relative;
+    position: absolute;
+    right: 0;
+    margin: 4rem;
+    bottom: 0;
 
     .image {
       width: 100%;
       max-width: 500px;
-      margin: 0 2em;
     }
+  }
+
+  .about__content {
+    font-size: 2.1rem;
+    max-width: 66%;
+    box-shadow: 6px 2px 44px 10px rgba(0, 0, 0, 0.062);
+    z-index: 1;
+    background: white;
+    padding: 2rem;
   }
 }

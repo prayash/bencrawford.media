@@ -7,9 +7,9 @@
 }
 
 .col {
-  flex: 1;
   display: flex;
-  max-width: 50%;
+  flex: 1;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -31,4 +31,8 @@
 
 .cta.gray {
   background-color: #f0f0f0;
+}
+
+.gatsby-image-outer-wrapper {
+  width: 100%;
 }
