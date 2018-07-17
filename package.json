@@ -28,6 +28,7 @@
     "gatsby-transformer-sharp": "^1.6.27",
     "gh-pages": "^1.1.0",
     "load-asset": "^1.2.0",
+    "node-polyglot": "^2.3.0",
     "react-helmet": "^5.2.0",
     "react-mailchimp-subscribe": "^2.0.1",
     "react-measure": "^2.0.2",

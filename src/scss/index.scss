@@ -2,7 +2,6 @@
 @import 'animations';
 @import 'base';
 @import 'layout';
-@import 'buttons';
 @import 'header';
 @import 'footer';
 @import 'listing';
@@ -125,6 +124,10 @@ main,
       .slick-slider {
         opacity: 1;
       }
+
+      .motion-reel {
+        opacity: 1;
+      }
     }
 
     &.grayen {
@@ -233,13 +236,31 @@ a.title:hover,
     }
   }
 
-  img {
+  .slide-inner {
+    background-position: center center;
+    background-size: cover;
     display: block;
+    float: left;
     height: 100%;
-    width: auto;
+    margin-right: -100%;
+    position: relative;
+    opacity: 1;
+    width: 100%;
+    z-index: 2;
   }
 }
 
 .gallery-container {
   width: 100%;
+}
+
+.motion-reel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 1;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  transform: translateX(-35%);
 }

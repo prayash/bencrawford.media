@@ -11,8 +11,6 @@ export default class Listing extends React.Component {
   render() {
     let { data } = this.props
 
-    console.log(data)
-
     let listing = data
       .sort(byOrder)
       .filter(({ node }) => {

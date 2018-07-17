@@ -2,36 +2,87 @@
   align-items: center;
   animation: 1s ease-out 0s 1 slideDownCover;
   background: transparent;
+  color: #fff;
   display: flex;
   flex-direction: row;
   font-family: Lato, sans-serif;
-  font-size: 24px;
-  height: 3rem;
+  font-size: 16px;
   justify-content: center;
   letter-spacing: 2px;
-  padding: 3rem;
-  top: 0;
+  overflow: hidden;
+  padding: 24px 0;
+  position: absolute;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
   width: 100%;
   z-index: 10;
 
+  &.dark {
+    color: black;
+
+    .line {
+      background: black;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  & > * {
+    align-items: center;
+    display: flex;
+    flex: 1;
+  }
+
+  &:first-child {
+    justify-content: flex-start;
+    margin-right: auto;
+  }
+
+  &:last-child {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
   a {
     border-bottom: none;
+  }
+
+  nav {
+    ul {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    li {
+      display: inline-block;
+      letter-spacing: 0.1em;
+      margin: 0;
+
+      &:after {
+        color: white;
+        content: '/';
+        padding: 0 10px;
+      }
+
+      &:last-child:after {
+        content: '';
+        padding: 0;
+      }
+    }
   }
 }
 
 .header .logo {
   color: #4a4a4a;
+  display: flex;
   font-weight: 900;
+  justify-content: center;
 
   img {
     margin: 0;
   }
-}
-
-.header .logo,
-.header .navigation {
-  width: auto;
-  height: 30px;
 }
 
 .header .navigation {
@@ -69,4 +120,150 @@ a.title:hover {
   font-size: 2em;
   letter-spacing: 0.3em;
   text-transform: uppercase;
+}
+
+.header__right {
+  justify-content: flex-end;
+
+  .menu_button_container {
+    position: relative;
+    z-index: 13;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .btn {
+    background: 0;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.1em;
+    line-height: normal;
+    margin-right: 20px;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    overflow: visible;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+  }
+
+  .menu-item a {
+    color: white;
+  }
+}
+
+.menu_icon {
+  position: relative;
+  display: inline-block;
+}
+
+.menu_icon,
+.menu_icon:after,
+.menu_icon:before {
+  width: 40px;
+  background: white;
+  transition: all 0.3s ease-in-out;
+  height: 1px;
+}
+
+.dark {
+  .menu_icon,
+  .menu_icon:after,
+  .menu_icon:before {
+    background: black;
+  }
+}
+
+.menu_icon:after,
+.menu_icon:before {
+  display: block;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+.menu_icon:before {
+  top: 8px;
+}
+
+.menu_icon:after {
+  top: -8px;
+}
+
+.menu_active .menu_icon {
+  background: 0 0;
+}
+
+.menu_active .menu_icon:after,
+.menu_active .menu_icon:before {
+  background: white;
+  width: 20px;
+  top: 2px;
+}
+
+.menu_active .menu_icon:before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.menu_active .menu_icon:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.main_header.white .menu_icon,
+.main_header.white .menu_icon:after,
+.main_header.white .menu_icon:before {
+  background: #fff;
+}
+
+.main_header.white .menu_active .menu_icon {
+  background: 0 0;
+}
+
+.main_navigation {
+  opacity: 0;
+  position: absolute;
+  right: -50px;
+  transition: all 0.3s ease-in-out;
+  z-index: 9;
+}
+
+.menu_active button {
+  opacity: 0;
+}
+
+.menu_active .main_navigation {
+  opacity: 1;
+  right: 50px;
+  z-index: 20;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+
+  &.menu_active {
+    opacity: 1;
+    z-index: 3;
+  }
+}
+
+.social-links {
+  display: flex;
+
+  .icon {
+    margin-right: 12px;
+  }
 }

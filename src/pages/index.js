@@ -8,6 +8,10 @@ import Header from '../components/header'
 import config from '../config'
 import '../scss/index.scss'
 
+import reel from '../assets/img/reel.mp4'
+import slide1 from '../assets/img/slides/eclipse.jpg'
+import slide2 from '../assets/img/slides/rocks.jpg'
+
 const DEFAULT_LEFT = {
   motion: 0,
   about: 33.33,
@@ -63,8 +67,6 @@ export default class Index extends React.Component {
 
     return (
       <div className="home container">
-        <Header />
-
         <Img
           style={{ position: 'absolute', height: '100%', width: '100%' }}
           sizes={background.sizes}
@@ -103,9 +105,30 @@ export default class Index extends React.Component {
 
                 {p.title === 'stills' && (
                   <Slider {...settings}>
-                    <img src={require('../assets/img/slides/eclipse.jpg')} />
-                    <img src={require('../assets/img/slides/rocks.jpg')} />
+                    <div className="slide">
+                      <div
+                        className="slide-inner"
+                        style={{
+                          backgroundImage: `url(${slide1})`
+                        }}
+                      />
+                    </div>
+
+                    <div className="slide">
+                      <div
+                        className="slide-inner"
+                        style={{
+                          backgroundImage: `url(${slide2})`
+                        }}
+                      />
+                    </div>
                   </Slider>
+                )}
+
+                {p.title === 'motion' && (
+                  <video loop muted autoPlay className="motion-reel">
+                    <source src={reel} type="video/mp4" />
+                  </video>
                 )}
               </section>
             )

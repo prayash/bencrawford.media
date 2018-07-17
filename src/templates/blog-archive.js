@@ -26,7 +26,7 @@ const IndexPage = ({ data, pathContext }) => {
         {/* <h1>{capitalizeFirstLetter(pathPrefix)} archive</h1> */}
       </header>
 
-      <Listing loop={group} />
+      {/* <Listing loop={group} /> */}
     </div>
   )
 }
