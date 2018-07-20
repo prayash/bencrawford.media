@@ -22,9 +22,10 @@ export default class Layout extends React.Component {
   render() {
     let { children, location } = this.props
     let { menuOpen } = this.state
+    let isHome = location.pathname === '/'
 
     let headerStyle = cx('header', {
-      dark: location.pathname !== '/'
+      dark: !isHome
     })
 
     let headerRightStyle = cx('header__right', {
@@ -58,8 +59,8 @@ export default class Layout extends React.Component {
               <span className="line" />
 
               <div className="social-links">
-                <Instagram />
-                <YouTube />
+                <Instagram light={isHome} />
+                <YouTube light={isHome} />
               </div>
             </div>
 

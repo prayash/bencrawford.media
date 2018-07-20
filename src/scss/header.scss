@@ -1,3 +1,9 @@
+svg.icon {
+  path {
+    transition: fill 0.4s ease;
+  }
+}
+
 .header {
   align-items: center;
   animation: 1s ease-out 0s 1 slideDownCover;
@@ -22,6 +28,10 @@
 
     .line {
       background: black;
+    }
+
+    .btn {
+      color: black;
     }
   }
 
@@ -136,7 +146,7 @@ a.title:hover {
   .btn {
     background: 0;
     border: 0;
-    color: inherit;
+    color: white;
     cursor: pointer;
     font-family: inherit;
     letter-spacing: 0.1em;
