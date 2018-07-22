@@ -45,11 +45,9 @@ export default class Layout extends React.Component {
           />
         </Helmet>
 
-        <div id="page">
-          <Header dark={!isHome} />
+        <Header dark={!isHome} />
 
-          {children()}
-        </div>
+        <div id="page">{children()}</div>
       </main>
     )
   }

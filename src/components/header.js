@@ -2,8 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import cx from 'classnames'
 
-import { t } from '../config'
-import Logo from '../assets/img/logo.png'
+import config, { t } from '../config'
 import { Instagram, YouTube } from './icons'
 
 class Header extends React.Component {
@@ -37,7 +36,7 @@ class Header extends React.Component {
           </div>
 
           <Link to={'/'} className="logo">
-            <img src={Logo} width={48} />
+            <img src={config.logo} width={48} />
           </Link>
 
           <div className={headerRightStyle}>
