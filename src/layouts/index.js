@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import config, { t } from '../config'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import '../scss/index.scss'
 
 export default class Layout extends React.Component {
   render() {

@@ -5,9 +5,6 @@ import Slider from 'react-slick'
 import Img from 'gatsby-image'
 
 import Header from '../components/header'
-import config from '../config'
-import '../scss/index.scss'
-
 import reel from '../assets/img/reel.mp4'
 import slide1 from '../assets/img/slides/eclipse.jpg'
 import slide2 from '../assets/img/slides/rocks.jpg'
@@ -168,35 +165,6 @@ export default class Index extends React.Component {
 
 export const query = graphql`
   query IndexQuery {
-    blog: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
-      filter: { frontmatter: { section: { eq: "blog" } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMMM, YYYY")
-            cover_image {
-              publicURL
-              childImageSharp {
-                sizes(maxWidth: 1240) {
-                  srcSet
-                }
-              }
-            }
-            section
-          }
-          fields {
-            slug
-          }
-          excerpt
-        }
-      }
-    }
     background: imageSharp(id: { regex: "/_bg.jpg/" }) {
       sizes(maxWidth: 1280, quality: 100) {
         ...GatsbyImageSharpSizes
