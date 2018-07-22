@@ -197,7 +197,7 @@ export const query = graphql`
         }
       }
     }
-    background: imageSharp(id: { regex: "/bg2.jpg/" }) {
+    background: imageSharp(id: { regex: "/_bg.jpg/" }) {
       sizes(maxWidth: 1280, quality: 100) {
         ...GatsbyImageSharpSizes
       }

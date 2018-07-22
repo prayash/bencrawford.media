@@ -7,6 +7,7 @@ export const strings = {
   header: {
     title: 'Ben Crawford',
     nav: {
+      button: 'Menu',
       home: 'Home',
       about: 'About',
       stills: 'Stills',

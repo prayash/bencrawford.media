@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import cx from 'classnames'
-import { t } from '../config/strings'
 
+import { t } from '../config'
 import Logo from '../assets/img/logo.png'
+import { Instagram, YouTube } from './icons'
 
 class Header extends React.Component {
   state = {
@@ -11,10 +12,10 @@ class Header extends React.Component {
   }
 
   render() {
-    let headerStyle = cx('header', {
-      dark: location.pathname !== '/'
-    })
+    let { menuOpen } = this.state
+    let { dark } = this.props
 
+    let headerStyle = cx('header', { dark })
     let headerRightStyle = cx('header__right', {
       menu_active: menuOpen
     })
@@ -30,8 +31,8 @@ class Header extends React.Component {
             <span className="line" />
 
             <div className="social-links">
-              <Instagram />
-              <YouTube />
+              <Instagram light={!dark} />
+              <YouTube light={!dark} />
             </div>
           </div>
 
@@ -41,26 +42,34 @@ class Header extends React.Component {
 
           <div className={headerRightStyle}>
             <div className="menu_button_container" onClick={this.handleMenu}>
-              <button>Menu</button>
+              <button className="btn">{t('header.nav.button')}</button>
               <span className="menu_icon" />
             </div>
 
             <nav className="main_navigation">
               <ul className="menu">
                 <li className="menu-item">
-                  <Link to={'/'}>{t('header.nav.home')}</Link>
+                  <Link to={'/'} onClick={this.handleMenu}>
+                    {t('header.nav.home')}
+                  </Link>
                 </li>
 
                 <li className="menu-item">
-                  <Link to={'/about'}>{t('header.nav.about')}</Link>
+                  <Link to={'/about'} onClick={this.handleMenu}>
+                    {t('header.nav.about')}
+                  </Link>
                 </li>
 
                 <li className="menu-item">
-                  <Link to={'/stills'}>{t('header.nav.stills')}</Link>
+                  <Link to={'/stills'} onClick={this.handleMenu}>
+                    {t('header.nav.stills')}
+                  </Link>
                 </li>
 
                 <li className="menu-item">
-                  <Link to={'/motion'}>{t('header.nav.motion')}</Link>
+                  <Link to={'/motion'} onClick={this.handleMenu}>
+                    {t('header.nav.motion')}
+                  </Link>
                 </li>
               </ul>
             </nav>
