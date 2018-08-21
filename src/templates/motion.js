@@ -1,15 +1,17 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import capitalizeFirstLetter from '../helpers/uppercase'
+import { Link } from 'gatsby'
+import styled from 'react-emotion'
+
+import Layout from '../components/layout'
 import Listing from '../components/listing'
 
-const Motion = ({ data, pathContext }) => {
-  const { group } = pathContext
+const Motion = ({ data, pageContext }) => {
+  const { group } = pageContext
 
   return (
-    <div className="gallery--motion">
+    <Layout className="motion" location="/motion">
       <Listing data={group} />
-    </div>
+    </Layout>
   )
 }
 

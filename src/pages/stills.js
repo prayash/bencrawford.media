@@ -1,15 +1,29 @@
 import React from 'react'
-
+import { graphql } from 'gatsby'
+import Image from 'gatsby-image'
+import styled from 'react-emotion'
 import Gallery from 'react-photo-gallery'
 import Measure from 'react-measure'
-import Image from 'gatsby-image'
 
-const FILTERS = ['all', 'adventure', 'landscape', 'lifestyle']
+import Layout from '../components/layout'
+import { Container, FilterList, FilterItem } from '../components/general'
+
+let Filters = styled.section`
+  padding: 0 48px 0 0;
+`
+
+let ListItem = styled.li`
+  margin: 0;
+  padding: 0;
+`
+
+const FILTERS = ['all', 'adventure', 'landscape', 'lifestyle', 'people']
 
 export default class Stills extends React.Component {
   state = {
     photos: [],
-    width: 1
+    width: 1,
+    filter: 'all'
   }
 
   componentDidMount() {
@@ -36,7 +50,8 @@ export default class Stills extends React.Component {
             src,
             sizes: [`${sizes.sizes}`],
             width: 600,
-            height: 600 / sizes.aspectRatio
+            height: 600 / sizes.aspectRatio,
+            category: extractCategory(src)
           }
         }
       })
@@ -44,60 +59,64 @@ export default class Stills extends React.Component {
   }
 
   activateFilter = filter => {
-    console.log(filter)
+    this.setState({ filter })
   }
 
   renderFilters = () => {
     return (
-      <section className="stills__filter">
-        <ul className="filter__list">
+      <Filters>
+        <FilterList>
           <p>filter:</p>
 
-          {FILTERS.map((filter, i) => (
-            <li key={i}>
-              <button
-                className="filter__link"
-                onClick={this.activateFilter.bind(this, filter)}
-              >
+          {FILTERS.map(filter => (
+            <ListItem key={filter}>
+              <FilterItem onClick={this.activateFilter.bind(this, filter)}>
                 {filter}
-              </button>
-            </li>
+              </FilterItem>
+            </ListItem>
           ))}
-        </ul>
-      </section>
+        </FilterList>
+      </Filters>
     )
   }
 
   render() {
-    let { width, photos, loadedAll } = this.state
+    let { width, photos, loadedAll, filter } = this.state
+    let filtered = photos.filter(photo => photo.category === filter)
+
+    if (filter === 'all') {
+      filtered = photos
+    }
 
     return (
-      <div className="stills container">
-        {this.renderFilters()}
+      <Layout className="stills" location={this.props.location}>
+        <Container>
+          {this.renderFilters()}
 
-        <Measure
-          bounds
-          onResize={contentRect =>
-            this.setState({
-              width: contentRect.bounds.width
-            })
-          }
-        >
-          {({ measureRef }) => {
-            let columns = this.calculateColumns(width) || 1
+          <Measure
+            bounds
+            onResize={contentRect =>
+              this.setState({
+                width: contentRect.bounds.width
+              })
+            }
+          >
+            {({ measureRef }) => {
+              let columns = this.calculateColumns(width)
 
-            return (
-              <div ref={measureRef} className="gallery-container">
-                <Gallery
-                  className="gallery"
-                  columns={columns}
-                  photos={photos}
-                />
-              </div>
-            )
-          }}
-        </Measure>
-      </div>
+              return (
+                <div ref={measureRef} className="gallery-container">
+                  <Gallery
+                    className="gallery"
+                    columns={columns}
+                    photos={filtered}
+                  />
+                </div>
+              )
+            }}
+          </Measure>
+        </Container>
+      </Layout>
     )
   }
 
@@ -110,13 +129,17 @@ export default class Stills extends React.Component {
       return 3
     }
 
-    return 0
+    return 1
   }
+}
+
+function extractCategory(path) {
+  return path.split('/')[2].split('-')[0]
 }
 
 export const pageQuery = graphql`
   query ImagesQuery {
-    allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+    allFile(filter: { sourceInstanceName: { eq: "stills" } }) {
       edges {
         node {
           childImageSharp {

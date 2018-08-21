@@ -1,115 +1,84 @@
-const autoprefixer = require('autoprefixer')
-const rucksackCSS = require('rucksack-css')
+const config = require('./config')
+
+const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
 
 module.exports = {
+  /* General Information */
+  pathPrefix: config.pathPrefix,
   siteMetadata: {
-    title: `Ben Crawford`,
-    description: `The portfolio of Ben Crawford.`,
-    siteUrl: `http://bencrawford.media`
+    siteUrl: config.siteUrl + pathPrefix,
+    buildTime: new Date(Date.now()).toLocaleString()
   },
+  /* Plugins */
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-react-next`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-twitter`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-emotion',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-feed`
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/images/`,
+        name: 'images'
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'post',
+        path: `${__dirname}/blog`
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/content/`
+        name: `stills`,
+        path: `${__dirname}/data/stills/`
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/data/`
+        path: `${__dirname}/data`
       }
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'src/utils/typography.js'
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: config.siteTitle,
+        short_name: config.siteTitleAlt,
+        description: config.siteDescription,
+        start_url: config.pathPrefix,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: 'fullscreen'
+      }
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-remark-copy-linked-files',
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-external-links',
             options: {
-              maxWidth: 1080
+              target: '_blank',
+              rel: 'nofollow noopener noreferrer'
             }
           },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              // Class prefix for <pre> tags containing syntax highlighting;
-              // defaults to 'language-' (eg <pre class="language-js">).
-              // If your site loads Prism into the browser at runtime,
-              // (eg for use with libraries like react-live),
-              // you may use this to prevent Prism from re-processing syntax.
-              // This is an uncommon use-case though;
-              // If you're unsure, it's best to use the default value.
-              classPrefix: 'language-',
-              // This is used to allow setting a language for inline code
-              // (i.e. single backticks) by creating a separator.
-              // This separator is a string and will do no white-space
-              // stripping.
-              // A suggested value for English speakers is the non-ascii
-              // character '›'.
-              inlineCodeMarker: null,
-              // This lets you set up language aliases.  For example,
-              // setting this to '{ sh: "bash" }' will let you use
-              // the language "sh" which will highlight using the
-              // bash highlighter.
-              aliases: {}
-            }
-          }
+          'gatsby-remark-autolink-headers'
         ]
       }
     },
-    {
-      resolve: `gatsby-plugin-sitemap`,
-      options: {
-        // output: `/some-other-sitemap.xml`,
-        // exclude: [`/path/to/page`, `/another/page`],
-        query: `
-        {
-          site {
-            siteMetadata {
-              siteUrl
-            }
-          }
 
-          allSitePage {
-            edges {
-              node {
-                path
-              }
-            }
-          }
-      }`
-      }
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: '', // TODO (add GA)
-        // Puts tracking script in the head instead of the body
-        head: false,
-        // Setting this parameter is optional
-        anonymize: true,
-        // Setting this parameter is also optional
-        respectDNT: true
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-postcss-sass',
-      options: {
-        postCssPlugins: [autoprefixer(), rucksackCSS()],
-        precision: 8
-      }
-    }
+    /* Must be placed at the end */
+    'gatsby-plugin-offline',
+    'gatsby-plugin-netlify'
   ]
 }
