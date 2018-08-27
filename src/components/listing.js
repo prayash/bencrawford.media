@@ -49,6 +49,11 @@ const CardContent = styled.div`
   opacity: ${props => (props.hide ? 0 : 1)};
   transition: opacity 0.6s ease-in-out;
   right: -5rem;
+  @media (max-width: 760px) {
+    max-width: 100%;
+    padding-left: 0;
+    position: initial;
+  }
 `
 
 const ProjectTitle = styled.h1`
@@ -75,13 +80,14 @@ const Button = styled.button`
 `
 
 const ButtonContainer = styled.div`
-  position: absolute;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
   height: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 12px;
+  width: 100%;
 `
 
 const byOrder = (prev, next) =>
@@ -112,15 +118,6 @@ export default class Listing extends React.Component {
           <Content speed={0.5} offset={index} key={index}>
             <Card>
               <Hero>
-                <ButtonContainer>
-                  <Button
-                    onClick={this.handlePlay.bind(this, index)}
-                    hide={previewing === index}
-                  >
-                    <PlayIcon />
-                  </Button>
-                </ButtonContainer>
-
                 <ImgWrapper>
                   <Img
                     fadeIn
@@ -130,6 +127,15 @@ export default class Listing extends React.Component {
                         .aspectRatio
                     }
                   />
+
+                  <ButtonContainer>
+                    <Button
+                      onClick={this.handlePlay.bind(this, index)}
+                      hide={previewing === index}
+                    >
+                      <PlayIcon />
+                    </Button>
+                  </ButtonContainer>
 
                   <VideoEmbed
                     visible={previewing === index}

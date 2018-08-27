@@ -21,6 +21,10 @@ const Section = styled.section`
   width: ${props => props.width};
   z-index: ${props => (props.top ? 2 : 1)};
 
+  &:last-child {
+    border-bottom: none;
+  }
+
   @media (max-width: 760px) {
     border-bottom: 1px solid #fff;
     height: 33.33vh;

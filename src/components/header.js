@@ -81,7 +81,7 @@ const Navigation = styled.nav`
   a {
     color: white;
     font-family: CustomFont, Lato, sans-serif;
-    font-size: 1.15rem;
+    font-size: 1rem;
     user-select: none;
     text-decoration: none;
   }
@@ -208,7 +208,11 @@ class Header extends React.Component {
           </Partial>
 
           <Partial style={{ flex: 0.1 }}>
-            <Link to={'/'} className="logo" style={{ height: 40 }}>
+            <Link
+              to={'/'}
+              className="logo"
+              style={{ height: 40, display: 'flex', alignItems: 'center' }}
+            >
               <img src={logo} width={40} />
             </Link>
           </Partial>

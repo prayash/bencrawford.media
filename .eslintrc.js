@@ -1,0 +1,44 @@
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+    jest: true
+  },
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      modules: true
+    }
+  },
+  extends: ['eslint:recommended'],
+  plugins: ['react', 'prettier', 'import'],
+  globals: {
+    tw: true
+  },
+  rules: {
+    semi: 'off',
+    'no-console': 'off',
+    'no-unused-vars': [
+      1,
+      { args: 'none', ignoreRestSiblings: true, varsIgnorePattern: '^_' }
+    ],
+    'no-return-assign': 'error',
+    'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
+    'react/jsx-no-undef': 'error',
+    'react/jsx-uses-react': 'warn',
+    'react/jsx-uses-vars': 'warn',
+    'react/no-danger-with-children': 'warn',
+    'react/no-deprecated': 'off',
+    'react/no-direct-mutation-state': 'warn',
+    'react/no-is-mounted': 'warn',
+    'react/react-in-jsx-scope': 'error',
+    'react/require-render-return': 'warn',
+    'react/style-prop-object': 'warn',
+    'prettier/prettier': 'warn',
+    'import/no-unresolved': [2, { commonjs: true }]
+  }
+}

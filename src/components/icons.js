@@ -34,7 +34,12 @@ export function Instagram({ light, link }) {
 
 export function PlayIcon({ props }) {
   return (
-    <svg width="200px" height="116px" viewBox="0 0 200 116">
+    <svg
+      width="200px"
+      height="116px"
+      viewBox="0 0 200 116"
+      style={{ transform: 'scale(0.5)' }}
+    >
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g>
           <rect fill="#000000" x="0" y="0" width="200" height="116" rx="10" />

@@ -10,11 +10,22 @@ const ColumnContainer = styled(Container)`
   align-items: center;
   flex-direction: column;
   width: 100%;
+
+  @media (max-width: 800px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `
 
 const Photo = styled.img`
   width: 100%;
   max-width: 500px;
+`
+
+const FirstSection = styled.section`
+  padding: 3rem 0 3rem 3rem;
+  position: relative;
+  max-width: 800px;
 `
 
 const Section = styled.section`
@@ -49,6 +60,7 @@ const AboutHeading = styled.h2`
   z-index: 10;
   position: absolute;
   text-transform: uppercase;
+  top: 10rem;
   transition: all 1.3s ease-in-out;
 `
 
@@ -61,7 +73,7 @@ const AboutSection = styled.section`
 const LeftPane = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   width: 45%;
 `
 
@@ -80,6 +92,9 @@ const SlashList = styled.ul`
   opacity: 1;
   padding: 0;
   transition: all 1s ease-in-out;
+  position: relative;
+  top: 4rem;
+  margin-left: 0.3rem;
 
   li {
     display: inline-block;
@@ -109,7 +124,7 @@ export default props => {
   return (
     <Layout location={props.location}>
       <ColumnContainer>
-        <Section>
+        <FirstSection>
           <Row>
             <LeftPane>
               <SlashList>
@@ -130,7 +145,7 @@ export default props => {
               <Photo src={image} />
             </RightPane>
           </Row>
-        </Section>
+        </FirstSection>
 
         <Section>
           <Row>
