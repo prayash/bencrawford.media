@@ -50,6 +50,7 @@ const CardContent = styled.div`
   transition: opacity 0.6s ease-in-out;
   right: -5rem;
   @media (max-width: 760px) {
+    background: transparent;
     max-width: 100%;
     padding-left: 0;
     position: initial;
